@@ -1,0 +1,67 @@
+[alias]
+  st = status
+  s = status
+  b = branch
+  pc = pair-commit
+  pr = pull-request
+  ci = commit -v
+  co = checkout
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  sp = smart-pull
+  aa = add --all
+  ctags = !.git/hooks/ctags
+  dc = diff --cached
+	di = diff
+	br = branch
+	sta = stash
+	llog = log --date=local
+	flog = log --pretty=fuller --decorate
+	lol = log --graph --decorate --oneline
+	lola = log --graph --decorate --oneline --all
+	blog = log origin/master... --left-right
+	ds = diff --staged
+	fixup = commit --fixup
+	squash = commit --squash
+	unstage = reset HEAD
+	rum = rebase master@{u}
+[color]
+	ui = always
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	excludesfile = /Users/bronson/.gitignore_global
+	editor = vim
+	pager = less -FXRS -x2
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[diff]
+  tool = sourcetree
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[merge]
+  tool = sourcetree
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+[log]
+  decorate = short
+[apply]
+	whitespace = nowarn
+[branch]
+	autosetupmerge = true
+[rebase]
+	autosquash = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	name = Bronson McKinley
+	initials = bm
+	email = bronson.mckinley@goodsearch.com
