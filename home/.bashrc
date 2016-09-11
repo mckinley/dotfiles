@@ -13,16 +13,26 @@ shopt -s histappend                      # append to history, don't overwrite it
 source ~/.bash_aliases
 source ~/.bash_functions
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+if [ -f /usr/local/share/chruby/chruby.sh ]; then
+    source /usr/local/share/chruby/chruby.sh
+fi
+if [ -f /usr/local/share/chruby/auto.sh ]; then
+    source /usr/local/share/chruby/auto.sh
+fi
+
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+if [ "$(gem list hub -i)" == "true" ]; then
+    eval "$(hub alias -s)"
+fi
+
 eval "$(direnv hook bash)"
-eval "$(hub alias -s)"
+
 if [ -f /usr/local/etc/bash_completion.d ]; then
     . /usr/local/etc/bash_completion.d
 fi
