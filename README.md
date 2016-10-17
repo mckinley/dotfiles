@@ -2,8 +2,16 @@
 
 ## Install dotfiles
 - `cd` into the dotfiles project root.
-- run `. ./bootstrap.sh`. If there is already a backup directory in place (`~/dotfile-backups`) there will be a prompt warning that backups may be lost. Only proceed if you are certain that relevant backup dotfiles are no longer needed.
+- run `./bootstrap.sh`.
 
 ## Uninstall dotfiles
 - `cd` into the dotfiles project root.
-- run `. ./bootstrap.sh --revert`.
+- run `./bootstrap.sh --revert`.
+
+## Additional installations
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- `brew install coreutils`
+- `brew install autojump`
+- `brew install direnv`
+- `brew install chruby`
+- `brew install ruby-install`
