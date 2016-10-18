@@ -9,9 +9,12 @@
 - run `./bootstrap.sh --revert`.
 
 ## Additional installations
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 - `brew install coreutils`
 - `brew install autojump`
 - `brew install direnv`
 - `brew install chruby`
 - `brew install ruby-install`
+
+## Resources
+- Standard.xml: import to JetBrains IDE Code Style Schemes
