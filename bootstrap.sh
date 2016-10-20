@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 BACKUP_DIR_NAME=".dotfile-backups";
-BACKUP=$(gdate +%s%N);
+BACKUP=$(date +%s);
 SOURCE_DIR="./home";
 DESTINATION_DIR=~;
 LAST_BACKUP=$(ls -tr $DESTINATION_DIR/$BACKUP_DIR_NAME | tail -n 1);
