@@ -17,4 +17,5 @@
 - `brew install ruby-install`
 
 ## Resources
-- Standard.xml: import to JetBrains IDE Code Style Schemes
+- standard.xml: import to JetBrains IDE Code Style Schemes
+- package-list.xml: this Atom package list is the result of running `apm list --installed --bare`
