@@ -11,8 +11,6 @@ alias ...='cd ../..'     # Go up two directories
 alias ....='cd ../../..' # Go up three directories
 alias -- -='cd -'        # Go back
 
-alias date='gdate'
-
 alias z='zeus'
 alias s='spring'
 alias delbranches='git co master && git branch | grep -v \* | xargs git branch -D && git remote prune origin'
