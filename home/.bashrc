@@ -1,38 +1,33 @@
-export PATH="$PATH:~/scripts"
-export EDITOR=vim
+include () {
+  [[ -s "$1" ]] && . "$1"
+}
 
-export RUBY_GC_HEAP_INIT_SLOTS=600000
-export RUBY_GC_MALLOC_LIMIT=59000000
-export RUBY_HEAP_FREE_MIN=100000
+exists () {
+  hash "$1" &> /dev/null
+}
+
+export PATH="$PATH:$HOME/scripts"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+export EDITOR=vim
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
-source ~/.bash_aliases
-source ~/.bash_functions
+include ~/.bash_aliases
+include ~/.bash_functions
 
-if [ -f /usr/local/share/chruby/chruby.sh ]; then
-    source /usr/local/share/chruby/chruby.sh
-fi
-if [ -f /usr/local/share/chruby/auto.sh ]; then
-    source /usr/local/share/chruby/auto.sh
-fi
-
-source ~/.git-completion.bash
-source ~/.git-prompt.sh
-
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-if [ "$(gem list hub -i)" == "true" ]; then
-    eval "$(hub alias -s)"
+include ~/.rvm/scripts/rvm # Load RVM into a shell session *as a function*
+include $(brew --prefix)/etc/profile.d/autojump.sh
+include $(brew --prefix)/etc/bash_completion
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  . "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-eval "$(direnv hook bash)"
-
-if [ -f /usr/local/etc/bash_completion.d ]; then
-    . /usr/local/etc/bash_completion.d
+[[ $(gem list hub -i) == "true" ]] && eval "$(hub alias -s)"
+if exists direnv; then
+    eval "$(direnv hook bash)"
 fi

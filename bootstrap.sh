@@ -8,6 +8,7 @@ SOURCE_DIR="./home";
 DESTINATION_DIR=~;
 LAST_BACKUP=$(ls -tr $DESTINATION_DIR/$BACKUP_DIR_NAME | tail -n 1);
 echo $LAST_BACKUP;
+
 function install() {
   echo "Updating dotfiles...";
   git pull origin master;
