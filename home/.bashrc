@@ -29,7 +29,9 @@ if exists direnv; then
     eval "$(direnv hook bash)"
 fi
 
-[[ $(gem list hub -i) == "true" ]] && eval "$(hub alias -s)"
+if exists hub; then
+    eval "$(hub alias -s)"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 include "$NVM_DIR/nvm.sh"  # This loads nvm
