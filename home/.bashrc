@@ -18,12 +18,11 @@ include ~/.bash_aliases
 include ~/.bash_functions
 
 include $(brew --prefix)/etc/profile.d/autojump.sh
+
 include $(brew --prefix)/etc/bash_completion
 
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-  . "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+__GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+include $(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh
 
 if exists direnv; then
     eval "$(direnv hook bash)"
