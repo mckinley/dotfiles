@@ -1,0 +1,8 @@
+--database=postgresql
+--webpack=react
+--skip-action-cable
+--skip-sprockets
+--skip-coffee
+--skip-turbolinks
+--skip-javascript
+--template=~/Projects/Belts/belts/template.rb
