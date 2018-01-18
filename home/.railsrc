@@ -1,4 +1,2 @@
 --database=postgresql
---webpack=react
---skip-coffee
 --template=~/Projects/Belts/belts/template.rb
