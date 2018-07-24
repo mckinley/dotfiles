@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# USAGE:
+# `./bootstrap.sh` will install or update home dotfiles.
+# `./bootstrap.sh --force` will ignore any problems while installing or updating.
+# `./bootstrap.sh --revert` will revert previous install or update. This can be done several times to go back in time until there are no backups available.
+
 cd "$(dirname "${BASH_SOURCE}")";
 
 BACKUP_DIR_NAME=".dotfile-backups";
