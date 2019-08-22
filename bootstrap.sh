@@ -63,10 +63,10 @@
 #unset uninstall;
 
 git clone --bare git@github.com:mckinley/dotfiles.git $HOME/.dotfiles
-#function config {
-#   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
-#}
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+function dotfiles {
+   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
+#alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 mkdir -p .dotfile-backups
 dotfiles checkout
 if [[ $? = 0 ]]; then
