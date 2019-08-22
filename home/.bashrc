@@ -15,7 +15,6 @@ export EDITOR=vim
 export PATH="$PATH:$HOME/scripts"
 
 include ~/.bash_aliases
-include ~/.bash_functions
 
 include $(brew --prefix)/etc/profile.d/autojump.sh
 
