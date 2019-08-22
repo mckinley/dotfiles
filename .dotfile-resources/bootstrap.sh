@@ -64,16 +64,16 @@
 
 git clone --bare git@github.com:mckinley/dotfiles.git $HOME/.dotfiles
 function dotfiles {
-   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+   git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 #alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-mkdir -p .dotfile-backups
+mkdir -p ~/.dotfile-backups
 dotfiles checkout
 if [[ $? = 0 ]]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dotfiles.";
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfile-backups/{}
+    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.dotfile-backups/{}
 fi;
 #dotfiles checkout
 dotfiles config status.showUntrackedFiles no
