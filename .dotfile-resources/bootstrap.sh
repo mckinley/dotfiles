@@ -61,7 +61,7 @@
 #
 #unset install;
 #unset uninstall;
-
+cd ~/
 git clone --bare git@github.com:mckinley/dotfiles.git $HOME/.dotfiles
 function dotfiles {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
@@ -75,5 +75,6 @@ if [[ $? = 0 ]]; then
     echo "Backing up pre-existing dotfiles.";
     dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.dotfile-backups/{}
 fi;
-#dotfiles checkout
+dotfiles checkout
 dotfiles config status.showUntrackedFiles no
+cd -
