@@ -61,20 +61,38 @@
 #
 #unset install;
 #unset uninstall;
-cd ~/
-git clone --bare git@github.com:mckinley/dotfiles.git $HOME/.dotfiles
+
 function dotfiles {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
-#alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-mkdir -p ~/.dotfile-backups
-dotfiles checkout
-if [[ $? = 0 ]]; then
-  echo "Checked out config.";
-  else
-    echo "Backing up pre-existing dotfiles.";
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.dotfile-backups/{}
-fi;
-dotfiles checkout
-dotfiles config status.showUntrackedFiles no
-cd -
+BACKUP=$(date +%s);
+
+TMP="$(dirname "${BASH_SOURCE}")/tmp/"
+mkdir -p $TMP
+git clone --separate-git-dir=$HOME/.dotfiles git@github.com:mckinley/dotfiles.git $TMP
+# dotfiles checkout $TMP
+# dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $2'} | xargs -I {} rsync -avh --no-perms {} ~/.dotfile-backups/$BACKUP
+
+# cd ~/
+# git clone --bare git@github.com:mckinley/dotfiles.git $HOME/.dotfiles
+# function dotfiles {
+#    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+# }
+# #alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# mkdir -p ~/.dotfile-backups
+# dotfiles checkout
+# if [[ $? = 0 ]]; then
+#   echo "Checked out config.";
+#   else
+#     echo "Backing up pre-existing dotfiles.";
+#
+#     # rsync -b --backup-dir="$BACKUP_DIR_NAME/$BACKUP" \
+#     # --exclude ".DS_Store" \
+#     # -avh --no-perms "$SOURCE_DIR/" "$DESTINATION_DIR";
+#
+#     rsync -a --files-from=/tmp/foo /usr
+#     dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I {} rsync -a {} ~/.dotfile-backups/$BACKUP
+# fi;
+# dotfiles checkout
+# dotfiles config status.showUntrackedFiles no
+# cd -
