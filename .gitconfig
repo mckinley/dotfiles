@@ -10,6 +10,7 @@
 	br = branch
 	sta = stash
   ci = commit -v
+  cm = commit -m
 	fixup = commit --fixup
 	squash = commit --squash
 	unstage = reset HEAD
@@ -22,8 +23,8 @@
 	blog = log origin/master... --left-right
 	rum = rebase master@{u}
 [branch]
-	autosetuprebase = always
 	autosetupmerge = always
+	autosetuprebase = always
 [color]
 	ui = always
 	branch = auto

@@ -24,9 +24,8 @@ provision() {
 
   brew install asdf
   brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc unzip curl
-  # what requires this?
-  brew install openssl libyaml libffi
 
+  brew install openssl libyaml libffi
   asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
   asdf install ruby 2.6.3
   asdf global ruby 2.6.3
