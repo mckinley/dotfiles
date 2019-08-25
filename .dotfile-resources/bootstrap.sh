@@ -4,6 +4,12 @@
 # `./bootstrap.sh` will install or update home dotfiles.
 # `./bootstrap.sh --revert` will revert previous install or update. This can be done several times to go back in time until there are no backups available.
 
+GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
+GIT_DIR="$HOME/.dotfiles"
+BACKUPS_DIR="$HOME/.dotfile-backups"
+RESOURCES_DIR="$HOME/.dotfile-resources"
+TMP_DIR="$(dirname "${BASH_SOURCE}")/tmp"
+
 # WIP
 provision() {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -30,17 +36,16 @@ provision() {
   asdf install nodejs 10.16.3
   asdf global nodejs 10.16.3
 
+  mkdir -p "$TMP_DIR"
+  git checkout git@github.com:lysyi3m/macos-terminal-themes.git "$TMP_DIR"
+  open macos-terminal-themes/schemes/OceanicMaterial.terminal
+  rm -rf "$TMP_DIR"
+
   #  https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 }
 
-GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
-GIT_DIR="$HOME/.dotfiles"
-BACKUPS_DIR="$HOME/.dotfile-backups"
-RESOURCES_DIR="$HOME/.dotfile-resources"
-TMP_DIR="$(dirname "${BASH_SOURCE}")/tmp"
-
 dotfiles() {
-  git --git-dir=$GIT_DIR --work-tree=$HOME $@
+  git --git-dir="$GIT_DIR" --work-tree="$HOME" $@
 }
 
 install() {
@@ -51,12 +56,12 @@ install() {
 
   rm -rf "$GIT_DIR"
   mkdir -p "$TMP_DIR"
-  git clone --separate-git-dir=$GIT_DIR $GIT_REMOTE $TMP_DIR
+  git clone --separate-git-dir="$GIT_DIR" $GIT_REMOTE "$TMP_DIR"
   rsync --backup --recursive --checksum --verbose \
     --backup-dir="$BACKUP_DIR" \
     --exclude={.DS_Store,.git,.idea} \
     "$TMP_DIR/" "$HOME/"
-  rm -rf $TMP_DIR
+  rm -rf "$TMP_DIR"
   dotfiles config --local status.showUntrackedFiles no
   dotfiles remote add origin git@github.com:mckinley/dotfiles.git
   source ~/.bash_profile
@@ -67,7 +72,7 @@ install() {
 revert() {
   LAST_BACKUP="$BACKUPS_DIR/$(ls -tr "$BACKUPS_DIR" | tail -n 1)"
 
-  if [ -z "$(ls $BACKUPS_DIR)" ]; then
+  if [ -z "$(ls "$BACKUPS_DIR")" ]; then
     echo "No backups where found at $BACKUPS_DIR."
     return
   fi

@@ -2,20 +2,8 @@
 
 ## Install dotfiles
 - `cd` into the dotfiles project root.
-- run `./bootstrap.sh`.
+- run `./.dotfile-resources/bootstrap.sh`.
 
-## Uninstall dotfiles
+## Revert dotfiles
 - `cd` into the dotfiles project root.
-- run `./bootstrap.sh --revert`.
-
-## Additional installations
-- `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-- `brew install coreutils`
-- `brew install autojump`
-- `brew install direnv`
-- `brew install chruby`
-- `brew install ruby-install`
-
-## Resources
-- standard.xml: import to JetBrains IDE Code Style Schemes
-- package-list.xml: this Atom package list is the result of running `apm list --installed --bare`
+- run `./.dotfile-resources/bootstrap.sh --revert`.
