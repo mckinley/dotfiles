@@ -66,66 +66,48 @@ function dotfiles {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
+GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
+GIT_DIR="$HOME/.dotfiles"
+BACKUPS_DIR="$HOME/.dotfile-backups"
+RESOURCES_DIR="$HOME/.dotfile-resources"
+TMP_DIR="$(dirname "${BASH_SOURCE}")/tmp"
+
 function install {
-    BACKUP_DIR="$HOME/.dotfile-backups/$(date +%Y-%m-%d-%s)";
+    BACKUP_DIR="$BACKUPS_DIR/$(date +%Y-%m-%d-%s)"
 
+    echo "Installing dotfiles..."
+    echo "Creating backup: $BACKUP_DIR"
 
-    rm -rf $HOME/.dotfiles
-    TMP="$(dirname "${BASH_SOURCE}")/tmp"
-    mkdir -p $TMP
-    git clone --separate-git-dir=$HOME/.dotfiles git@github.com:mckinley/dotfiles.git $TMP
-
+    rm -rf "$GIT_DIR"
+    mkdir -p "$TMP_DIR"
+    git clone --separate-git-dir=$GIT_DIR $GIT_REMOTE $TMP_DIR
     rsync --backup --recursive --checksum --verbose \
-    --backup-dir="$HOME/.dotfile-backups/$BACKUP_DIR" \
+    --backup-dir="$BACKUP_DIR" \
     --exclude={.DS_Store,.git,.idea}  \
-    "$TMP/" "$HOME"
-
-    rm -rf $TMP
+    "$TMP_DIR/" "$HOME/"
+    rm -rf $TMP_DIR
 
     dotfiles config --local status.showUntrackedFiles no
     dotfiles remote add origin git@github.com:mckinley/dotfiles.git
 
-    source ~/.bash_profile;
+    source ~/.bash_profile
+
+    echo "Install complete."
 }
 
-#GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
-#GIT_DIR="$HOME/.dotfiles"
-#BACKUPS_DIR="$HOME/.dotfile-backups"
-#RESOURCES_DIR="$HOME/.dotfile-resources"
-#TMP_DIR="$(dirname "${BASH_SOURCE}")/tmp"
-
-#function install {
-#    BACKUP_DIR="$BACKUPS_DIR/$(date +%Y-%m-%d-%s)"
-#
-#    rm -rf $GIT_DIR
-#    mkdir -p $TMP_DIR
-#    git clone --separate-git-dir=$GIT_DIR $GIT_REMOTE $TMP_DIR
-#
-##    rsync --backup --recursive --checksum --verbose \
-##    --backup-dir="$HOME/.dotfile-backups/$BACKUP_DIR" \
-##    --exclude={.DS_Store,.git,.idea}  \
-##    "$TMP_DIR/" "$HOME"
-##
-#    rm -rf $TMP_DIR/
-##
-##    dotfiles config --local status.showUntrackedFiles no
-##    dotfiles remote add origin git@github.com:mckinley/dotfiles.git
-##
-##    source ~/.bash_profile;
-#}
-
 function revert {
-    LAST_BACKUP=$(ls -tr ~/.dotfile-backups/ | tail -n 1);
+    LAST_BACKUP="$BACKUPS_DIR/$(ls -tr "$BACKUPS_DIR" | tail -n 1)"
 
-    echo "Uninstalling dotfiles...";
-    echo "last backup: $LAST_BACKUP";
+    echo "Reverting dotfiles..."
+    echo "Last backup: $LAST_BACKUP"
+
     rsync --recursive --checksum --verbose \
     --exclude ".DS_Store" \
-    "$HOME/.dotfile-backups/$LAST_BACKUP/" "$HOME";
+    "$LAST_BACKUP/" "$HOME/"
+    rm -rf "$LAST_BACKUP"
+    source ~/.bash_profile
 
-    rm -rf "$HOME/.dotfile-backups/$LAST_BACKUP/";
-    echo "Uninstall complete."
-    source ~/.bash_profile;
+    echo "Revert complete."
 }
 
 install

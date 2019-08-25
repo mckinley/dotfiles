@@ -1,29 +1,29 @@
 [alias]
-  st = status
   s = status
-  b = branch
-  pc = pair-commit
-  pr = pull-request
-  ci = commit -v
-  co = checkout
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  sp = smart-pull
-  aa = add --all
-  ctags = !.git/hooks/ctags
+  st = status
+  di = diff
   dc = diff --cached
-	di = diff
+  ds = diff --staged
+  aa = add --all
+  co = checkout
+  b = branch
 	br = branch
 	sta = stash
+  ci = commit -v
+	fixup = commit --fixup
+	squash = commit --squash
+	unstage = reset HEAD
+  pr = pull-request
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	llog = log --date=local
 	flog = log --pretty=fuller --decorate
 	lol = log --graph --decorate --oneline
 	lola = log --graph --decorate --oneline --all
 	blog = log origin/master... --left-right
-	ds = diff --staged
-	fixup = commit --fixup
-	squash = commit --squash
-	unstage = reset HEAD
 	rum = rebase master@{u}
+[branch]
+	autosetuprebase = always
+	autosetupmerge = always
 [color]
 	ui = always
 	branch = auto
@@ -33,35 +33,20 @@
 [core]
 	excludesfile = /Users/bronson/.gitignore_global
 	editor = vim
-	pager = less -FXRS -x2
+	pager = less -x4
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
-[diff]
-  tool = sourcetree
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[merge]
-  tool = sourcetree
-[push]
-	default = simple
-[credential]
-	helper = osxkeychain
-[url "https://github.com/"]
-	insteadOf = git://github.com/
-[log]
-  decorate = short
-[apply]
-	whitespace = nowarn
-[branch]
-	autosetupmerge = true
 [rebase]
-	autosquash = true
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  autosquash = true
 [user]
 	name = Bronson McKinley
-	initials = bm
-	email = gitbronsonmckinley@gmail.com
+	email = bronsonmckinley@gmail.com
