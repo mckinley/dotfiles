@@ -29,6 +29,8 @@ provision() {
   asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   asdf install nodejs 10.16.3
   asdf global nodejs 10.16.3
+
+  #  https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 }
 
 GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
