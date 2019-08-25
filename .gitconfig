@@ -35,6 +35,8 @@
 	excludesfile = /Users/bronson/.gitignore_global
 	editor = vim
 	pager = less -x4
+[credential]
+	helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
