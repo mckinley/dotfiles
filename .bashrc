@@ -20,11 +20,11 @@ export HISTFILESIZE=100000
 export EDITOR=vim
 export PATH="$PATH:$HOME/scripts"
 
-include () {
+include() {
   [[ -s "$1" ]] && . "$1"
 }
 
-exists () {
+exists() {
   hash "$1" &> /dev/null
 }
 
