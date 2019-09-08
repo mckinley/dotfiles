@@ -35,6 +35,8 @@ provision() {
   asdf install nodejs 10.16.3
   asdf global nodejs 10.16.3
 
+  brew install yarn
+
   mkdir -p "$TMP_DIR"
   git checkout git@github.com:lysyi3m/macos-terminal-themes.git "$TMP_DIR"
   open macos-terminal-themes/schemes/OceanicMaterial.terminal

@@ -44,7 +44,7 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-include $(brew --prefix)/usr/local/opt/asdf/asdf.sh
+include $(brew --prefix)/opt/asdf/asdf.sh
 include $(brew --prefix)/etc/profile.d/autojump.sh
 
 if exists direnv; then
