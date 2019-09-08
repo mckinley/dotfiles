@@ -39,8 +39,6 @@ provision() {
   git checkout git@github.com:lysyi3m/macos-terminal-themes.git "$TMP_DIR"
   open macos-terminal-themes/schemes/OceanicMaterial.terminal
   rm -rf "$TMP_DIR"
-
-  #  https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 }
 
 dotfiles() {
