@@ -53,3 +53,5 @@
 [user]
 	name = Bronson McKinley
 	email = bronsonmckinley@gmail.com
+[push]
+	default = simple

@@ -8,7 +8,8 @@ export ZSH="/Users/bronson/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="random"
+# ZSH_THEME="random"
+ZSH_THEME="sonicradish"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -112,7 +113,7 @@ exists() {
 }
 
 if exists direnv; then
-    eval "$(direnv hook bash)"
+    eval "$(direnv hook zsh)"
 fi
 
 if exists hub; then
