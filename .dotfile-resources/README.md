@@ -8,6 +8,13 @@
 - `cd` into the dotfiles project root.
 - run `./.dotfile-resources/bootstrap.sh --revert`.
 
+## Managing dotfiles
+
+Once dotfiles is installed, the `dotfiles` command is available as an alias for `git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME` in bash or zsh.
+Manage files in the home directory as if they were in a git repository, but only files that are explicitly added are tracked.
+Remember that the repository originally used to install dotfiles is not the repository affecting shell sessions or generally used to manage dotfiles.
+To get started execute `dotfiles status` in the home directory.
+
 ## Preferences
 - dock
 - finder toolbar
