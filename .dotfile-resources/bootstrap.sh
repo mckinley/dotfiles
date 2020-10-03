@@ -103,7 +103,6 @@ install() {
 
   echo "- Configuring home repo"
   dotfiles config --local status.showUntrackedFiles no
-  #  dotfiles remote add origin "$GIT_REMOTE"
 
   echo "- Reset default shell"
   exec zsh -l
