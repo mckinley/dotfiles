@@ -90,7 +90,7 @@ install() {
 
   rm -rf "$GIT_DIR"
   mkdir -p "$TMP_DIR"
-  git clone --separate-git-dir="$GIT_DIR" "$GIT_REMOTE" "$TMP_DIR"
+  git clone --separate-git-dir="$GIT_DIR" $GIT_REMOTE "$TMP_DIR"
   rsync --backup --recursive --checksum --verbose \
     --backup-dir="$BACKUP_DIR" \
     --exclude={.DS_Store,.git,.idea} \
