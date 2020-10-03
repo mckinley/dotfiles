@@ -86,18 +86,26 @@ install() {
   BACKUP_DIR="$BACKUPS_DIR/$(date +%Y-%m-%d-%s)"
 
   echo "Installing dotfiles..."
-  echo "Creating backup: $BACKUP_DIR"
 
+  echo "Cloning repo to tmp dir with separate git dir '$GIT_DIR'"
   rm -rf "$GIT_DIR"
   mkdir -p "$TMP_DIR"
-  git clone --separate-git-dir="$GIT_DIR" $GIT_REMOTE "$TMP_DIR"
+  git clone --separate-git-dir="$GIT_DIR" "$GIT_REMOTE" "$TMP_DIR"
+
+  echo "Syncing home with tmp repo and creating backup '$BACKUP_DIR'"
   rsync --backup --recursive --checksum --verbose \
     --backup-dir="$BACKUP_DIR" \
     --exclude={.DS_Store,.git,.idea} \
     "$TMP_DIR/" "$HOME/"
+
+  echo "Removing tmp repo"
   rm -rf "$TMP_DIR"
+
+  echo "Configuring home repo"
   dotfiles config --local status.showUntrackedFiles no
   dotfiles remote add origin "$GIT_REMOTE"
+
+  echo "Sourcing default shell configuration"
   source "$SOURCE_FILE"
 
   echo "Install complete."
