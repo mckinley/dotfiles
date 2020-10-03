@@ -69,7 +69,14 @@ ZSH_THEME="sonicradish"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf autojump)
+plugins=(asdf autojump direnv git github)
+
+# Oh my zsh complains about the permissions of some of homebrew's zsh directories:
+# [oh-my-zsh] Insecure completion-dependent directories detected:
+# drwxrwxr-x  7 bronson  admin  224 Oct  3 15:07 /usr/local/share/zsh
+# drwxrwxr-x  4 bronson  admin  128 Oct  3 15:06 /usr/local/share/zsh/site-functions
+# The following skips the verification.
+ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,23 +106,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 export EDITOR=vim
 export PATH="$PATH:$HOME/scripts"
+# https://formulae.brew.sh/formula/ruby-build
+# ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
+# Note: this may interfere with building old versions of Ruby (e.g <2.4) that use OpenSSL <1.1.
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-include() {
-  [[ -s "$1" ]] && . "$1"
-}
-
-exists() {
-  hash "$1" &> /dev/null
-}
-
-if exists direnv; then
-    eval "$(direnv hook zsh)"
-fi
-
-if exists hub; then
-    eval "$(hub alias -s)"
-fi
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
