@@ -20,32 +20,6 @@ provision() {
   #  https://brew.sh/
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-  #  https://formulae.brew.sh/formula/zsh
-  brew install zsh
-  #  https://ohmyz.sh/#install
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  #  https://github.com/wting/autojump#os-x
-  brew install autojump
-
-  #  https://github.com/magicmonty/bash-git-prompt#via-homebrew-on-mac-os-x
-  brew install bash-git-prompt
-
-  #  https://git-scm.com/
-  brew install git
-
-  #  https://direnv.net/docs/installation.html
-  brew install direnv
-
-  #  https://hub.github.com/
-  brew install hub
-
-  #  https://wiki.postgresql.org/wiki/Homebrew
-  brew install postgresql && brew services start postgresql
-
-  #  https://devcenter.heroku.com/articles/heroku-cli
-  brew tap heroku/brew && brew install heroku
-
   #  https://asdf-vm.com/#/core-manage-asdf
   #  Dependencies
   brew install coreutils curl git
@@ -54,7 +28,6 @@ provision() {
 
   #  https://github.com/asdf-vm/asdf-ruby#install
   #  Dependencies (ruby-build: https://github.com/rbenv/ruby-build/wiki#macos)
-  #  optional, but recommended:
   brew install openssl readline
   asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
   asdf install ruby 2.6.6
@@ -69,8 +42,42 @@ provision() {
   asdf install nodejs 12.18.4
   asdf global nodejs 12.18.4
 
+  #  https://github.com/danhper/asdf-python
+  #  Dependencies (pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
+  brew install openssl readline sqlite3 xz zlib
+  asdf plugin-add python
+  asdf install python 3.8.6
+  asdf global python 3.8.6
+
+  #  https://formulae.brew.sh/formula/zsh
+  brew install zsh
+
+  #  https://ohmyz.sh/#install
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  #  https://github.com/wting/autojump#os-x
+  brew install autojump
+
+  #  https://github.com/magicmonty/bash-git-prompt#via-homebrew-on-mac-os-x
+  #  brew install bash-git-prompt
+
+  #  https://direnv.net/docs/installation.html
+  brew install direnv
+
+  #  https://git-scm.com/
+  brew install git
+
+  #  https://hub.github.com/
+  brew install hub
+
   #  https://classic.yarnpkg.com/en/docs/install#mac-stable
   brew install yarn
+
+  #  https://devcenter.heroku.com/articles/heroku-cli
+  brew tap heroku/brew && brew install heroku
+
+  #  https://wiki.postgresql.org/wiki/Homebrew
+  brew install postgresql && brew services start postgresql
 
   mkdir -p "$TMP_DIR"
   git checkout git@github.com:lysyi3m/macos-terminal-themes.git "$TMP_DIR"
