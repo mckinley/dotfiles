@@ -52,6 +52,11 @@ provision() {
   #  https://formulae.brew.sh/formula/zsh
   brew install zsh
 
+  # Zsh complains about homebrew's directory permissions
+  # drwxrwxr-x  7 bronson  admin  224 Oct  3 15:07 /usr/local/share/zsh
+  # drwxrwxr-x  4 bronson  admin  128 Oct  3 15:06 /usr/local/share/zsh/site-functions
+  compaudit | xargs chmod g-w,o-w
+
   #  https://ohmyz.sh/#install
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

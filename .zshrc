@@ -71,13 +71,6 @@ ZSH_THEME="sonicradish"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(asdf autojump direnv git github)
 
-# Oh my zsh complains about the permissions of some of homebrew's zsh directories:
-# [oh-my-zsh] Insecure completion-dependent directories detected:
-# drwxrwxr-x  7 bronson  admin  224 Oct  3 15:07 /usr/local/share/zsh
-# drwxrwxr-x  4 bronson  admin  128 Oct  3 15:06 /usr/local/share/zsh/site-functions
-# The following skips the verification.
-ZSH_DISABLE_COMPFIX=true
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
