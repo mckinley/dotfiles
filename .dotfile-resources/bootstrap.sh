@@ -85,6 +85,8 @@ provision() {
   brew install postgresql && brew services start postgresql
 
   open .dotfile-resources/macos-terminal-themes/themes/OceanicMaterial.terminal
+  echo "OceanicMaterial theme has been opened in a new terminal window"
+  echo "Set the theme as the default one with Shell -> Use Settings as Default"
 }
 
 dotfiles() {
