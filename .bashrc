@@ -11,6 +11,8 @@ alias ....='cd ../../..'
 alias delbranches='git co master && git branch | grep -v \* | xargs git branch -D && git remote prune origin'
 alias delmerged='git co master && git branch --merged | grep -v \* | xargs git branch -D && git remote prune origin'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot=dotfiles
+alias mine=rubymine
 
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups

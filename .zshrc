@@ -107,6 +107,8 @@ export PATH="$PATH:$HOME/scripts"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot=dotfiles
+alias mine=rubymine
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/bronson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;

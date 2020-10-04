@@ -9,7 +9,7 @@ GIT_REMOTE="git@github.com:mckinley/dotfiles.git"
 GIT_DIR="$HOME/.dotfiles"
 BACKUPS_DIR="$HOME/.dotfile-backups"
 RESOURCES_DIR="$HOME/.dotfile-resources"
-SOURCE_FILE="$HOME/.zshrc"
+SCRIPTS_DIR="$HOME/scripts"
 TMP_DIR="$(dirname "${BASH_SOURCE}")/tmp"
 
 provision() {
@@ -136,7 +136,9 @@ revert() {
     --exclude ".DS_Store" \
     "$LAST_BACKUP/" "$HOME/"
   rm -rf "$LAST_BACKUP"
-  source "$SOURCE_FILE"
+
+  echo "- Reset default shell"
+  exec zsh -l
 
   echo "Revert complete."
 }
