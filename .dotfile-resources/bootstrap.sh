@@ -79,10 +79,7 @@ provision() {
   #  https://wiki.postgresql.org/wiki/Homebrew
   brew install postgresql && brew services start postgresql
 
-  mkdir -p "$TMP_DIR"
-  git checkout git@github.com:lysyi3m/macos-terminal-themes.git "$TMP_DIR"
-  open macos-terminal-themes/schemes/OceanicMaterial.terminal
-  rm -rf "$TMP_DIR"
+  open .dotfile-resources/macos-terminal-themes/themes/OceanicMaterial.terminal
 }
 
 dotfiles() {

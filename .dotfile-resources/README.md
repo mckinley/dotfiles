@@ -25,3 +25,9 @@ To get started execute `dotfiles status` in the home directory.
 
 ## Bash and Zsh
 Dotfiles assumes Zsh as the default shell. Bash dotfiles are also included but may not be actively maintained.
+
+## macos-terminal-themes
+macos-terminal-themes has been added as a subtree with the following command:
+`git subtree add --prefix .dotfile-resources/macos-terminal-themes git@github.com:lysyi3m/macos-terminal-themes.git master --squash`
+To update macos-terminal-themes:
+`git subtree pull --prefix .dotfile-resources/macos-terminal-themes git@github.com:lysyi3m/macos-terminal-themes.git master --squash`
