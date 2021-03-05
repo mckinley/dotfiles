@@ -52,7 +52,7 @@
   autosquash = true
 [user]
 	name = Bronson McKinley
-	email = bronsonmckinley@gmail.com
+	email = mckinley@users.noreply.github.com
 [push]
 	default = current
 [pull]

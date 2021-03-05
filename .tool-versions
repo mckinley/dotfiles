@@ -1,3 +1,7 @@
-nodejs 12.18.4
-python 3.8.6
-ruby 2.6.6
+direnv 2.27.0
+nodejs 12.16.2
+postgres 12.5
+python 3.9.1
+redis 6.0.10
+ruby 2.7.2
+yarn 1.22.4

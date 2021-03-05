@@ -69,9 +69,12 @@ ZSH_THEME="sonicradish"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(asdf autojump direnv git github)
+plugins=(asdf autojump direnv git github rake)
 
 source $ZSH/oh-my-zsh.sh
+
+# Don't share history accross sessions
+unsetopt share_history
 
 # User configuration
 
@@ -112,3 +115,7 @@ alias mine=rubymine
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/bronson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# Homebrew PG version
+# export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+# Homebrew
+export PATH="/usr/local/sbin:$PATH"
