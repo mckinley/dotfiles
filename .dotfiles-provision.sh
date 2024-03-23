@@ -16,7 +16,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "- Installing utilities"
 brew install \
-  coreutils \
   zsh \
   rsync \
   git \
@@ -41,9 +40,18 @@ echo "- Installing Oh My Zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 echo "- Review the files .zshrc.pre-oh-my-zsh and .zshrc and merge the changes. Then you may remove the .zshrc.pre-oh-my-zsh file."
 
-echo "- Installing zsh theme"
+echo "- Installing powerlevel10k"
 # https://github.com/romkatv/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+
+echo "- Downloading p10k fonts"
+curl --create-dirs -LO --output-dir ~/powerlevel10k-fonts/ "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
+curl --create-dirs -LO --output-dir ~/powerlevel10k-fonts/ "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
+curl --create-dirs -LO --output-dir ~/powerlevel10k-fonts/ "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
+curl --create-dirs -LO --output-dir ~/powerlevel10k-fonts/ "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
+
+echo "- Font files for powerlevel10k have been downloaded to ~/powerlevel10k-fonts/. Please install them manually and remove the ~/powerlevel10k-fonts/ directory."
+echo "- Configure your terminal to use the new font: Open Terminal → Preferences → Profiles → Text, click Change under Font and select MesloLGS NF family."
 
 echo "- Installing applications"
 [[ ! -d "/Applications/Google Chrome.app" ]] && brew install --cask google-chrome
