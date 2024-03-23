@@ -1,0 +1,62 @@
+[alias]
+	st = status
+	aa = add --all
+	co = checkout
+	br = branch
+	sta = stash
+	ci = commit -v
+  cm = commit -m
+	amend = commit --amend --no-edit
+	fixup = commit --fixup
+	squash = commit --squash
+	di = diff
+  dc = diff --cached
+  ds = diff --staged
+	unstage = reset HEAD --
+	discard = checkout --
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	llog = log --date=local
+	flog = log --pretty=fuller --decorate
+	lol = log --graph --decorate --oneline
+	lola = log --graph --decorate --oneline --all
+	blog = log origin/master... --left-right
+	lssubtrees = !"git log | grep git-subtree-dir | awk '{ print $2 }'"
+[branch]
+	autosetupmerge = always
+	autosetuprebase = always
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = always
+[core]
+	editor = vim
+	excludesfile = /Users/bronson/.gitignore_global
+	pager = less -x4
+[credential]
+	helper = osxkeychain
+[diff]
+  tool = default-difftool
+[difftool "default-difftool"]
+  cmd = code --wait --diff --new-window $LOCAL $REMOTE
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	default = current
+[rebase]
+  autosquash = true
+[submodule]
+	recurse = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[user]
+	name = Bronson McKinley
+	email = mckinley@users.noreply.github.com
