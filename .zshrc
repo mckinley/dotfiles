@@ -130,9 +130,6 @@ export EDITOR=vim
 # Home bin
 export PATH="$PATH:$HOME/bin"
 
-# Homebrew Ruby
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
 # Install asdf plugins for packages listed in current directory's .tool-versions file
 alias asdfplugins="cut -d' ' -f1 .tool-versions | xargs -tI{} asdf plugin add {}"
 
