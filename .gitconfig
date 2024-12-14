@@ -34,6 +34,7 @@
 	editor = vim
 	excludesfile = /Users/bronson/.gitignore_global
 	pager = less -x4
+	ignorecase = false
 [credential]
 	helper = osxkeychain
 [diff]
