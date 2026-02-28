@@ -14,6 +14,7 @@
   ds = diff --staged
 	unstage = reset HEAD --
 	discard = checkout --
+  clean-merged = "!git branch --merged main | grep -vE '^\\*| main$| master$' | xargs -r git branch -d"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	llog = log --date=local
 	flog = log --pretty=fuller --decorate

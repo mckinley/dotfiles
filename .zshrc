@@ -121,7 +121,7 @@ source $ZSH/oh-my-zsh.sh
 
 # End Oh My Zsh configuration
 
-# Don't share history accross sessions
+# Don't share history across sessions
 unsetopt share_history
 
 # Use vim as the default editor
@@ -137,9 +137,11 @@ alias asdfplugins="cut -d' ' -f1 .tool-versions | xargs -tI{} asdf plugin add {}
 include ~/.powerlevel10k/powerlevel10k.zsh-theme
 include ~/.p10k.zsh
 
+# VSCode integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 # <Dotfiles>
 alias dotfiles='git --git-dir=$HOME/.dotfiles/git --work-tree=$HOME'
 alias dot=dotfiles
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 # </Dotfiles>
-
