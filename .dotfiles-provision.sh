@@ -27,7 +27,8 @@ brew install \
 
 # dependencies for ruby-build which is used by asdf-ruby
 # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-brew install openssl@1.1 openssl@3 readline libyaml gmp
+# Ruby 3.1+ builds against openssl@3. (openssl@1.1 was removed from Homebrew; only Ruby 3.0 and older need it.)
+brew install openssl@3 readline libyaml gmp
 
 echo "- Installing all asdf managed tools with Homebrew to ensure that dependencies are installed"
 cut -d' ' -f1 .tool-versions | xargs -tI{} brew install {}

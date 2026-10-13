@@ -52,6 +52,6 @@ There's no build, test suite or CI. Before committing, run:
 - **Keep paths relative to `$HOME`** so the files work for any username. The known exception is `core.excludesfile` in `.gitconfig`, which is still an absolute path.
 - **Don't move `~/.dotfiles/git`.** The `dot` alias and dtflmgmt's scripts all assume that location.
 - **Every `.tool-versions` entry must also be a Homebrew name.** The provision script runs `brew install` and `asdf plugin add` on each entry, so the name must work as a Homebrew formula (or alias) and as an asdf plugin.
-- **Known broken step:** `.dotfiles-provision.sh` installs `openssl@1.1`, which Homebrew has removed, so that `brew install` line fails as written.
+- **Ruby build dependencies follow ruby-build's suggested build environment.** Ruby 3.1 and newer build against `openssl@3`. Homebrew removed `openssl@1.1`, so don't add it back. Only Ruby 3.0 and older need it, from the `rbenv/tap` tap. Before adding a formula or cask to the provision script, check that it still exists with `brew info <name>`.
 
 This project is tracked in the pjmgmt HQ: mckinley/pjmgmt, hq/projects/dotfile-management.md.
